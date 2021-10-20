@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: system-ui, sans-serif;
+    font-size: 1em;
+}
+
+#contents {
+    min-height: 100vh;
+}
+
+.state-cycler {
+    cursor: pointer;
+    border: .5vh solid white;
+    border-radius: 1vh;
+    background: white;
+}
+
+#background {
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #222222;
+
+    position: absolute;
+    z-index: -1;
+}
+header {
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+.header-text {
+    font-size: 3em;
+}
+.color0 {
+    color: #d5c6e0;
+}
+.color1 {
+    color: #aaa1c8;
+}
+.color2 {
+    color: #967aa1;
+}
+
