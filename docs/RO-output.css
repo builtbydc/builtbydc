@@ -50,7 +50,14 @@ header {
 }
 
 #aliens3-frame {
-    margin: 3vw;
-    width: 94vw;
+    margin-top: 2vw;
+    margin-left: 35vw;
+    width: 30vw;
+
+    background: #f2f2e4;
+
+    padding: 3px;
+    border-radius: 16px;
+    border: 2px solid #c792df;
 }
 
