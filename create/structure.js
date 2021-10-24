@@ -17,6 +17,9 @@ function loadPage() {
                 console.log('ServiceWorker registration failed: ', err);
             });
     }
+
+    document.body.addEventListener('touchstart', function (e) { e.preventDefault(); });
+
 }
 
 function Structure() {
