@@ -20,31 +20,37 @@
 #background {
     min-width: 100vw;
     min-height: 100vh;
-    background: #222222;
+    background: #f4e409;
 
     position: absolute;
     z-index: -1;
 }
 header {
     width: 100vw;
+    height: 15vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding-top: 3vh;
-    padding-bottom: 3vh;
+    background: #c792df;
 }
 .header-text {
     font-size: 3em;
-}
-.color0 {
-    color: #d5c6e0;
+    text-shadow:0 0 1px white;
 }
 .color1 {
-    color: #aaa1c8;
+    color: #f4e409;
+}
+.color0 {
+    color: #f2f2e4;
 }
 .color2 {
-    color: #967aa1;
+    color: #addff7;
+}
+
+#aliens3-frame {
+    margin: 3vw;
+    width: 94vw;
 }
 
