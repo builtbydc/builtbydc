@@ -17,6 +17,9 @@
     background: white;
 }
 
+body {
+    background-color: #c792df;
+}
 #background {
     min-width: 100vw;
     min-height: 100vh;
