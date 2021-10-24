@@ -285,7 +285,7 @@ class StateCycler {
 }
 
 function headerText() {
-    const myName = "Daniel Carlson";
+    const myName = "C";
     const splitName = myName.split("");
 
     let out = "";
@@ -305,6 +305,17 @@ const songURL = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.c
 function loadPage() {
     document.getElementById("page-title").innerHTML = pageTitle;
     document.getElementById("contents").innerHTML = Structure();
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./serviceWorker.js')
+            .then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    }
 }
 
 function Structure() {
