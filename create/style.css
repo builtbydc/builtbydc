@@ -1,6 +1,7 @@
-body {
+html, body {
     background-color: #c792df;
     overflow: hidden;
+    position: fixed;
 }
 #background {
     min-width: 100vw;
