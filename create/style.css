@@ -1,20 +1,19 @@
 html, body {
-    width: calc((2.0/3) * 100vw);
     background-color: #c792df;
     overflow: hidden;
     position: fixed;
 }
 #background {
-    min-width: calc((2.0/3) * 100vw);
-    min-height: calc((2.0/3) * 100vh);
+    min-width: 100vw;
+    min-height: 100vh;
     background: #f4e409;
 
     position: absolute;
     z-index: -1;
 }
 header {
-    width: calc((2.0/3) * 100vw);
-    height: calc((2.0/30) * 100vh);
+    width: 100vw;
+    height: 10vh;
 
     display: flex;
     align-items: center;
@@ -38,7 +37,7 @@ header {
 #aliens3-frame {
     margin-top: 10px;
     margin-left: 10px;
-    width: calc(((2.0/3) * 100vw) - 30px);
+    width: calc(100vw - 30px);
 
     background: #f2f2e4;
 
