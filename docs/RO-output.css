@@ -32,7 +32,7 @@ html, body {
 }
 header {
     width: 100vw;
-    height: 15vh;
+    height: 10vh;
 
     display: flex;
     align-items: center;
@@ -55,7 +55,7 @@ header {
 }
 
 #aliens3-frame {
-    margin-top: 2vw;
+    margin-top: calc(5vw - 5px);
     margin-left: calc(5vw - 5px);
     width: 90vw;
 
