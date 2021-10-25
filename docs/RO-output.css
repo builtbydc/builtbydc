@@ -17,9 +17,12 @@
     background: white;
 }
 
+html, body {
+    overflow: hidden;
+}
 body {
     background-color: #c792df;
-    overflow: hidden;
+    position: relative;
 }
 #background {
     min-width: 100vw;
