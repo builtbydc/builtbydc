@@ -56,7 +56,7 @@ header {
 
 #aliens3-frame {
     margin-top: 2vw;
-    margin-left: 5vw;
+    margin-left: calc(5vw - 5px);
     width: 90vw;
 
     background: #f2f2e4;
