@@ -38,7 +38,8 @@ public class Compiler {
 
 	public static void main(String[] args) throws IOException {
 		File[] inputJSFiles = { new File("./library/components.js"), new File("./library/constructs.js"),
-				new File("./create/source.js"), new File("./create/structure.js") };
+				new File("./create/definitions.js"), new File("./library/setup.js"), new File("./create/source.js"),
+				new File("./create/structure.js") };
 
 		File outputJSFile = new File("./docs/RO-output.js");
 
