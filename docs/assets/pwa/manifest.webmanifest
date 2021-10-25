@@ -1,0 +1,22 @@
+{
+    "name": "Carlson.page: The Only Website",
+    "short_name": "Carlson",
+    "icons": [
+        {
+            "src": "./assets/pwa/icons/icon192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./assets/pwa/icons/icon512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "./index.html",
+    "background_color": "#c792df",
+    "display": "fullscreen",
+    "scope": "./",
+    "theme_color": "#f4e409",
+    "description": "Information about Daniel Carlson"
+}
