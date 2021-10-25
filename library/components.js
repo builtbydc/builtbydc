@@ -241,3 +241,35 @@ function Span(contents, className, id, other) {
 
     ) + contents + cl("span");
 }
+function Iframe(src, srcdoc, title, width, height, divClassName, className, id, name, allow, sandbox, referrerpolicy, other) {
+    id = pu(id); name = pu(name); allow = pu(allow); sandbox = pu(sandbox); referrerpolicy = pu(referrerpolicy); other = pu(other);
+
+    if (divClassName === "NO_DIV") {
+        className = pu(className);
+
+        return (
+            op("iframe",
+                wa("src", src) +
+                waNE(srcdoc, "", "srcdoc", srcdoc) +
+                wa("title", title) +
+                wa("width", width) +
+                wa("height", height) +
+                waNE(id, "", "id", id) +
+                waNE(className, "", "class", className) +
+                waNE(name, "", "name", name) +
+                waNE(allow, "", "allow", allow) +
+                waNE(sandbox, "", "sandbox", sandbox) +
+                waNE(referrerpolicy, "", "referrerpolicy", referrerpolicy) +
+                pu(other)
+
+            ) + cl("iframe")
+        );
+    } else {
+        divClassName = pu(divClassName);
+
+        return (Div(
+            Iframe(src, srcdoc, title, width, height, "NO_DIV", className, id, name, allow, sandbox, referrerpolicy, other),
+            divClassName)
+        );
+    }
+}

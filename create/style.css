@@ -1,19 +1,20 @@
 html, body {
+    width: calc((2.0/3) * 100vw);
     background-color: #c792df;
     overflow: hidden;
     position: fixed;
 }
 #background {
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: calc((2.0/3) * 100vw);
+    min-height: calc((2.0/3) * 100vh);
     background: #f4e409;
 
     position: absolute;
     z-index: -1;
 }
 header {
-    width: 100vw;
-    height: 10vh;
+    width: calc((2.0/3) * 100vw);
+    height: calc((2.0/30) * 100vh);
 
     display: flex;
     align-items: center;
@@ -22,7 +23,7 @@ header {
     background: #c792df;
 }
 .header-text {
-    font-size: 3em;
+    font-size: 2em;
     text-shadow:0 0 1px white;
 }
 .color1 {
@@ -37,7 +38,7 @@ header {
 #aliens3-frame {
     margin-top: 10px;
     margin-left: 10px;
-    width: calc(100vw - 30px);
+    width: calc(((2.0/3) * 100vw) - 30px);
 
     background: #f2f2e4;
 
