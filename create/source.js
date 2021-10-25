@@ -1,5 +1,5 @@
 function headerText() {
-    const myName = "Daniel Carlsom";
+    const myName = "Daniel Carlson";
     const splitName = myName.split("");
 
     let out = "";
