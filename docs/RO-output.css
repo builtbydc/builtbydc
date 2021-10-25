@@ -19,6 +19,7 @@
 
 body {
     background-color: #c792df;
+    overflow: hidden;
 }
 #background {
     min-width: 100vw;

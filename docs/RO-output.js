@@ -317,8 +317,6 @@ function loadPage() {
             });
     }
 
-    document.body.addEventListener('touchstart', function (e) { e.preventDefault(); });
-
 }
 
 function Structure() {
