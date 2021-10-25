@@ -12,8 +12,8 @@ html, body {
     z-index: -1;
 }
 header {
-    width: calc((2.0/3) * 100vw);
-    height: calc((2.0/3) * 10vh);
+    width: 100vw;
+    height: 10vh;
 
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@ header {
     background: #c792df;
 }
 .header-text {
-    font-size: 2em;
+    font-size: 3em;
     text-shadow:0 0 1px white;
 }
 .color1 {
@@ -36,9 +36,9 @@ header {
 }
 
 #aliens3-frame {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: calc((2.0/3) * 100vw - 30px);
+    margin-top: calc(5vw - 5px);
+    margin-left: calc(5vw - 5px);
+    width: 90vw;
 
     background: #f2f2e4;
 
