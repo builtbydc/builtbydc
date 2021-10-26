@@ -18,19 +18,11 @@
 }
 
 html, body {
-    background-color: #c792df;
+    background-color: #e7e3d9;
     overflow: hidden;
-    overflow-y: hidden;
     position: fixed;
 }
-#background {
-    min-width: 100vw;
-    min-height: 100vh;
-    background: #f4e409;
 
-    position: absolute;
-    z-index: -1;
-}
 header {
     width: 100vw;
     height: 10vh;
@@ -39,20 +31,40 @@ header {
     align-items: center;
     justify-content: center;
 
-    background: #c792df;
+    background: #272319;
 }
 .header-text {
-    font-size: 2em;
-    text-shadow:0 0 1px white;
-}
-.color1 {
-    color: #f4e409;
+    font-size: 3em;
 }
 .color0 {
-    color: #f2f2e4;
+    color: #fbf8cc;
+}
+.color1 {
+    color: #fde4cf;
 }
 .color2 {
-    color: #addff7;
+    color: #ffcfd2;
+}
+.color3 {
+    color: #f1c0e8;
+}
+.color4 {
+    color: #cfbaf0;
+}
+.color5 {
+    color: #a3c4f3;
+}
+.color6 {
+    color: #90dbf4;
+}
+.color7 {
+    color: #8eecf5;
+}
+.color8 {
+    color: #98f5e1;
+}
+.color9 {
+    color: #b9fbc0;
 }
 #aliens3-frame {
     margin-top: 10px;

@@ -5,7 +5,7 @@ function headerText() {
     let out = "";
 
     for (let i = 0; i < splitName.length; i++) {
-        out += Span(splitName[i], "color" + ((i % 7) % 3));
+        out += Span(splitName[i], "color" + (9 - Math.abs(i - 9)));
     }
 
     return out;

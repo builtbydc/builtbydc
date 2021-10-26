@@ -318,10 +318,6 @@ class StateCycler {
 
 const pageTitle = "Carlson";
 
-const songURL = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" +
-    "1147143079%3Fsecret_token%3Ds-ONkbQu9GkHs&color=%23c792df&auto_play=false&hide_related=false&" +
-    "show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false";
-
 function loadPage() {
     document.getElementById("page-title").innerHTML = pageTitle;
     document.getElementById("contents").innerHTML = Structure();
@@ -346,7 +342,7 @@ function headerText() {
     let out = "";
 
     for (let i = 0; i < splitName.length; i++) {
-        out += Span(splitName[i], "color" + ((i % 7) % 3));
+        out += Span(splitName[i], "color" + (9 - Math.abs(i - 9)));
     }
 
     return out;
@@ -354,9 +350,7 @@ function headerText() {
 
 function Structure() {
     return build([
-        Div("", "", "background"),
         Header(H(1, headerText(), "NO_DIV", "header-text")),
-        Iframe(songURL, "", "Aliens Demo 3 Music Player", "100%", "20", "NO_DIV", "music-player", "aliens3-frame")
     ]);
 }
 
