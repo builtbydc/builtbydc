@@ -14,9 +14,10 @@
         }
     ],
     "start_url": "./index.html",
-    "background_color": "#c792df",
+    "background_color": "#e7e3d9",
     "display": "fullscreen",
     "scope": "./",
-    "theme_color": "#f4e409",
+    "theme_color": "#272319",
+    "orientation": "portrait",
     "description": "Information about Daniel Carlson"
 }
