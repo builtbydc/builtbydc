@@ -1,9 +1,17 @@
 html, body {
-    background-color: #e7e3d9;
+    background-color: #272319;
     overflow: hidden;
     position: fixed;
 }
+#background {
+    position: absolute;
+    z-index: -1;
 
+    width: 100vw;
+    min-height: 100vh;
+
+    background-color: #e7e3d9;
+}
 header {
     width: 100vw;
     height: 10vh;
