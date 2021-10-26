@@ -15,7 +15,7 @@ header {
     background: #272319;
 }
 .header-text {
-    font-size: 3em;
+    font-size: 14vw;
 }
 .color0 {
     color: #fbf8cc;
@@ -46,15 +46,4 @@ header {
 }
 .color9 {
     color: #b9fbc0;
-}
-#aliens3-frame {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: calc(100vw - 30px);
-
-    background: #f2f2e4;
-
-    padding: 3px;
-    border-radius: 16px;
-    border: 2px solid #c792df;
 }
