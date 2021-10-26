@@ -95,7 +95,7 @@ function Section(contents, className, id, other) {
         ) + pu(contents) + cl("section")
     );
 }
-function A(href, target, contents, divClassName, className, id, other) {
+function A(href, target, contents, className, id, divClassName, other) {
     id = pu(id); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -117,13 +117,13 @@ function A(href, target, contents, divClassName, className, id, other) {
         divClassName = pu(divClassName);
 
         return (Div(
-            A(href, target, contents, "NO_DIV", className, id, other),
+            A(href, target, contents, className, id, "NO_DIV", other),
             divClassName)
         );
 
     }
 }
-function H(size, text, divClassName, className, id, other) {
+function H(size, text, className, id, divClassName, other) {
     id = pu(id); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -142,13 +142,13 @@ function H(size, text, divClassName, className, id, other) {
         divClassName = pu(divClassName);
 
         return (Div(
-            H(size, text, "NO_DIV", className, id, other),
+            H(size, text, className, id, "NO_DIV", other),
             divClassName)
         );
 
     }
 }
-function Img(src, alt, width, height, divClassName, className, id, other) {
+function Img(src, alt, width, height, className, id, divClassName, other) {
     id = pu(id); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -171,13 +171,13 @@ function Img(src, alt, width, height, divClassName, className, id, other) {
         divClassName = pu(divClassName);
 
         return (Div(
-            Img(src, alt, width, height, "NO_DIV", className, id, other),
+            Img(src, alt, width, height, className, id, "NO_DIV", other),
             divClassName)
         );
 
     }
 }
-function P(text, divClassName, className, id, other) {
+function P(text, className, id, divClassName, other) {
     id = pu(id); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -197,13 +197,13 @@ function P(text, divClassName, className, id, other) {
         divClassName = pu(divClassName);
 
         return (Div(
-            P(text, "NO_DIV", className, id, other),
+            P(text, className, id, "NO_DIV", other),
             divClassName)
         );
 
     }
 }
-function Button(contents, divClassName, className, id, other) {
+function Button(contents, className, id, divClassName, other) {
     id = pu(id); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -223,7 +223,7 @@ function Button(contents, divClassName, className, id, other) {
         divClassName = pu(divClassName);
 
         return (Div(
-            Button(contents, "NO_DIV", className, id, other),
+            Button(contents, className, id, "NO_DIV", other),
             divClassName)
         );
 
@@ -241,7 +241,7 @@ function Span(contents, className, id, other) {
 
     ) + contents + cl("span");
 }
-function Iframe(src, srcdoc, title, width, height, divClassName, className, id, name, allow, sandbox, referrerpolicy, other) {
+function Iframe(src, srcdoc, title, width, height, className, id, divClassName, name, allow, sandbox, referrerpolicy, other) {
     id = pu(id); name = pu(name); allow = pu(allow); sandbox = pu(sandbox); referrerpolicy = pu(referrerpolicy); other = pu(other);
 
     if (divClassName === "NO_DIV") {
@@ -268,7 +268,7 @@ function Iframe(src, srcdoc, title, width, height, divClassName, className, id, 
         divClassName = pu(divClassName);
 
         return (Div(
-            Iframe(src, srcdoc, title, width, height, "NO_DIV", className, id, name, allow, sandbox, referrerpolicy, other),
+            Iframe(src, srcdoc, title, width, height, className, id, "NO_DIV", name, allow, sandbox, referrerpolicy, other),
             divClassName)
         );
     }
@@ -341,8 +341,12 @@ function headerText() {
 
     let out = "";
 
+    let n = 0;
     for (let i = 0; i < splitName.length; i++) {
-        out += Span(splitName[i], "color" + (9 - Math.abs(i - 9)));
+        out += Span(splitName[i], "color" + (9 - Math.abs(n - 9)));
+
+        n++;
+        if (splitName[i] === " ") n--;
     }
 
     return out;
@@ -352,7 +356,19 @@ function Structure() {
     return build([
         Div("", "", "background"),
 
-        Header(H(1, headerText(), "NO_DIV", "header-text")),
+        Header(
+            H(1, headerText(), "header-text"),
+            "contents-centered"
+        ),
+
+        Div(build([
+            A("https://github.com/builtbydc", "_blank", "My Github", "link", "", "link-container"),
+            A("https://happyplace.carlson.page", "_blank", "HappyPlace", "link", "", "link-container"),
+            A("https://framework.carlson.page", "_blank", "Framework Testing Area", "link", "", "link-container")
+        ]),
+            "contents-centered",
+            "my-links"
+        )
     ]);
 }
 

@@ -12,13 +12,14 @@ html, body {
 
     background-color: #e7e3d9;
 }
-header {
-    width: 100vw;
-    height: 10vh;
-
+.contents-centered {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+header {
+    width: 100vw;
+    height: 10vh;
 
     background: #272319;
 }
@@ -54,4 +55,17 @@ header {
 }
 .color9 {
     color: #b9fbc0;
+}
+#my-links {
+    flex-direction: column;
+}
+.link {
+    color: #272319;
+    font-size: 5vw;
+}
+.link-container {
+    height: 5vh;
+    
+    display: flex;
+    align-items: center;
 }
