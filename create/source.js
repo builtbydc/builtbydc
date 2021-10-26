@@ -14,3 +14,7 @@ function headerText() {
 
     return out;
 }
+
+function link(url, text) {
+    return A(url, "_blank", text, "link", "", "link-container contents-centered");
+}

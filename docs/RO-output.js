@@ -352,6 +352,10 @@ function headerText() {
     return out;
 }
 
+function link(url, text) {
+    return A(url, "_blank", text, "link", "", "link-container contents-centered");
+}
+
 function Structure() {
     return build([
         Div("", "", "background"),
@@ -361,11 +365,12 @@ function Structure() {
             "contents-centered"
         ),
 
-        Div(build([
-            A("https://github.com/builtbydc", "_blank", "My Github", "link", "", "link-container"),
-            A("https://happyplace.carlson.page", "_blank", "HappyPlace", "link", "", "link-container"),
-            A("https://framework.carlson.page", "_blank", "Framework Testing Area", "link", "", "link-container")
-        ]),
+        Div(
+            build([
+                link("https://github.com/builtbydc", "My Github"),
+                link("https://happyplace.carlson.page", "HappyPlace"),
+                link("https://framework.carlson.page", "Framework Testing Area")
+            ]),
             "contents-centered",
             "my-links"
         )
