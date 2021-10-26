@@ -1,6 +1,7 @@
 html, body {
     background-color: #c792df;
     overflow: hidden;
+    overflow-y: hidden;
     position: fixed;
 }
 #background {
