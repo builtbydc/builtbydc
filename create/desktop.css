@@ -6,6 +6,12 @@
         font-size: 14vh;
     }
     .link {
-        font-size: 9vh;
+        font-size: 4vh;
+    }
+    .link-container {
+        height: 5vh;
+    }
+    .new-line {
+        height: 2.5vh;
     }
 }

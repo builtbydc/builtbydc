@@ -367,6 +367,8 @@ function Structure() {
 
         Div(
             build([
+                Div("", "new-line"),
+                H(1, "My Coding Projects:", "link"),
                 link("https://github.com/builtbydc", "My Github"),
                 link("https://happyplace.carlson.page", "HappyPlace"),
                 link("https://framework.carlson.page", "Testing Area")

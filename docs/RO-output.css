@@ -38,12 +38,12 @@ html, body {
 }
 header {
     width: 100vw;
-    height: 12vw;
+    height: 14vw;
 
     background: #272319;
 }
 .header-text {
-    font-size: 13vw;
+    font-size: 14vw;
 }
 .color0 {
     color: #fbf8cc;
@@ -83,12 +83,15 @@ header {
     font-size: 8vw;
 }
 .link-container {
-    height: 10vh;
+    height: 10vw;
     
     display: flex;
     align-items: center;
 
 
+}
+.new-line {
+    height: 5vw;
 }
 
 @media only screen and (min-width: 768px) {
@@ -99,7 +102,13 @@ header {
         font-size: 14vh;
     }
     .link {
-        font-size: 9vh;
+        font-size: 4vh;
+    }
+    .link-container {
+        height: 5vh;
+    }
+    .new-line {
+        height: 2.5vh;
     }
 }
 
