@@ -369,7 +369,7 @@ function Structure() {
             build([
                 link("https://github.com/builtbydc", "My Github"),
                 link("https://happyplace.carlson.page", "HappyPlace"),
-                link("https://framework.carlson.page", "Framework Testing Area")
+                link("https://framework.carlson.page", "Testing Area")
             ]),
             "contents-centered",
             "my-links"

@@ -45,7 +45,8 @@ public class Compiler {
 
 		combineFiles(inputJSFiles, outputJSFile);
 
-		File[] inputCSSFiles = { new File("./library/default.css"), new File("./create/style.css") };
+		File[] inputCSSFiles = { new File("./library/default.css"), new File("./create/mobile-first.css"),
+				new File("./create/desktop.css") };
 		File outputCSSFile = new File("./docs/RO-output.css");
 
 		combineFiles(inputCSSFiles, outputCSSFile);
