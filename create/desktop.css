@@ -1,17 +1,2 @@
 @media only screen and (min-width: 768px) {
-    header {
-        height: 13vh;
-    }
-    .header-text {
-        font-size: 14vh;
-    }
-    .link {
-        font-size: 4vh;
-    }
-    .link-container {
-        height: 5vh;
-    }
-    .new-line {
-        height: 2.5vh;
-    }
 }

@@ -13,4 +13,7 @@ function loadPage() {
             });
     }
 
+    loadMagicSizes();
+    loadColorList();
+
 }

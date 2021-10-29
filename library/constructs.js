@@ -1,3 +1,25 @@
+function magicSize(type, id, className, m_vw) {
+    let d_vh = m_vw * magicSizeScale;
+    let m = m_vw / 100.0;
+    let d = d_vh / 100.0;
+
+    let k = m * window.innerWidth - d * window.innerHeight;
+    let correction = k * (100 - (window.innerWidth - 768)) / 100;
+
+    if (correction * k < 0) correction = 0;
+
+    return build([
+        className === "" ? "#" + id + " {" : "." + className + " {\n",
+        "   " + type + ": " + m_vw + "vw;\n",
+        "}\n",
+        "@media only screen and (min-width: 768px) {\n",
+        "   " + (className === "" ? "#" + id + " {\n" : "." + className + " {\n"),
+        "       " + type + ": calc(" + d_vh + "vh + " + correction + "px);\n",
+        "   }\n",
+        "}\n",
+    ]);
+} window.onresize = loadMagicSizes;
+
 class StateCycler {
     constructor(id, contents, className, states, index) {
         this.id = id;

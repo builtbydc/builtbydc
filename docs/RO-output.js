@@ -274,6 +274,28 @@ function Iframe(src, srcdoc, title, width, height, className, id, divClassName, 
     }
 }
 
+function magicSize(type, id, className, m_vw) {
+    let d_vh = m_vw * magicSizeScale;
+    let m = m_vw / 100.0;
+    let d = d_vh / 100.0;
+
+    let k = m * window.innerWidth - d * window.innerHeight;
+    let correction = k * (100 - (window.innerWidth - 768)) / 100;
+
+    if (correction * k < 0) correction = 0;
+
+    return build([
+        className === "" ? "#" + id + " {" : "." + className + " {\n",
+        "   " + type + ": " + m_vw + "vw;\n",
+        "}\n",
+        "@media only screen and (min-width: 768px) {\n",
+        "   " + (className === "" ? "#" + id + " {\n" : "." + className + " {\n"),
+        "       " + type + ": calc(" + d_vh + "vh + " + correction + "px);\n",
+        "   }\n",
+        "}\n",
+    ]);
+} window.onresize = loadMagicSizes;
+
 class StateCycler {
     constructor(id, contents, className, states, index) {
         this.id = id;
@@ -317,6 +339,7 @@ class StateCycler {
 }
 
 const pageTitle = "Carlson";
+const magicSizeScale = 4.0 / 7;
 
 function loadPage() {
     document.getElementById("page-title").innerHTML = pageTitle;
@@ -332,6 +355,9 @@ function loadPage() {
                 console.log('ServiceWorker registration failed: ', err);
             });
     }
+
+    loadMagicSizes();
+    loadColorList();
 
 }
 
@@ -353,27 +379,47 @@ function headerText() {
 }
 
 function link(url, text) {
-    return A(url, "_blank", text, "link", "", "link-container contents-centered");
+    return A(url, "_blank", text, "link", "", "flex-center");
+}
+
+const colorList = ["#fbf8cc", "#fde4cf", "#ffcfd2", "#f1c0e8", "#cfbaf0", "#a3c4f3", "#90dbf4", "#8eecf5", "#98f5e1", "#b9fbc0"]
+function loadColorList() {
+    let out = "";
+    for (let i = 0; i < colorList.length; i++) {
+        out += ".color" + i + " {\n\tcolor: " + colorList[i] + ";\n}\n"
+    }
+    document.getElementById("color-list").innerHTML = out;
+}
+
+function loadMagicSizes() {
+    document.getElementById("magic-sizes").innerHTML = build([
+        magicSize("height", "page-header", "", 18),
+        magicSize("font-size", "", "header-text", 14),
+        magicSize("font-size", "", "link", 8),
+        magicSize("height", "", "link-container", 10),
+        magicSize("height", "", "new-line", 5),
+        magicSize("width", "", "mobile-background", 100)
+    ])
 }
 
 function Structure() {
     return build([
-        Div("", "", "background"),
+        Div(Div("", "mobile-background"), "desktop-background flex-center"),
 
         Header(
             H(1, headerText(), "header-text"),
-            "contents-centered"
+            "flex-center", "page-header"
         ),
 
         Div(
             build([
                 Div("", "new-line"),
-                H(1, "My Coding Projects:", "link"),
+                H(1, "Code:", "link"),
                 link("https://github.com/builtbydc", "My Github"),
                 link("https://happyplace.carlson.page", "HappyPlace"),
                 link("https://framework.carlson.page", "Testing Area")
             ]),
-            "contents-centered",
+            "flex-center",
             "my-links"
         )
     ]);

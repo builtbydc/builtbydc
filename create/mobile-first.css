@@ -1,76 +1,35 @@
 html, body {
-    background-color: #272319;
+    background-color: black;
     overflow: hidden;
     position: fixed;
 }
-#background {
+.desktop-background {
     position: absolute;
     z-index: -1;
 
     width: 100vw;
     min-height: 100vh;
 
-    background-color: #e7e3d9;
+    background-color: white;
 }
-.contents-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.mobile-background {
+    height: 100vh;
+    background-color: white;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
 }
 header {
     width: 100vw;
-    height: 14vw;
-
-    background: #272319;
-}
-.header-text {
-    font-size: 14vw;
-}
-.color0 {
-    color: #fbf8cc;
-}
-.color1 {
-    color: #fde4cf;
-}
-.color2 {
-    color: #ffcfd2;
-}
-.color3 {
-    color: #f1c0e8;
-}
-.color4 {
-    color: #cfbaf0;
-}
-.color5 {
-    color: #a3c4f3;
-}
-.color6 {
-    color: #90dbf4;
-}
-.color7 {
-    color: #8eecf5;
-}
-.color8 {
-    color: #98f5e1;
-}
-.color9 {
-    color: #b9fbc0;
+    background: black;
 }
 #my-links {
     flex-direction: column;
 }
-.link {
-    color: #272319;
-    font-size: 8vw;
-}
-.link-container {
-    height: 10vw;
-    
+.flex-center {
     display: flex;
     align-items: center;
-
-
+    justify-content: center;
 }
-.new-line {
-    height: 5vw;
+.link {
+    color: black;
 }
