@@ -8,63 +8,96 @@
 * {
     font-family: var(--sys-fonts);
     margin: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 html {
-    min-width: 100vw;
     min-height: 100vh;
-    background-color: var(--clr-accent);
+    width: 100vw;
 }
 
-header {
+nav{
+    font-size: 0;
+    height: 2rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+nav > ul {
     position: relative;
-    height: 4rem;
-    width: 100vw;
-    top: .4rem;
+    list-style-type: none;
+    width: 100%;
+    height: 50%;
+    font-size: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+nav > ul > li {
+    display: inline-block;
+    width: 25%;
+
+    vertical-align: top;
+
+    height: 2rem;
+    transform: translateY(-0.5rem);
+    background-color: black;
+    box-shadow: white 0 0 0 2px;
+}
+
+nav > ul > li:hover {
+    background-color: gray;
+    
+    transition: background-color 100ms;
+}
+
+nav > ul > li > a {
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
 }
 
-header::before {
-    content: '';
+@media screen and (max-width: 22.2rem) {
+    nav {
+        height: 3rem;
+    }
+    nav > ul {
+        height: calc(2*100% / 3);
+    }
+    nav > ul > li {
+        height:150%;
+    }
+    .info-gh::after {
+        opacity: 0;
+    }
+}
 
-    height: 4rem;
-    width: 70vw;
+.info-gh:hover::after {
+    content: "Opens GitHub in a new tab.";
+    font-size: 0.75rem;
     position: absolute;
-    z-index: -1;
-    background-color: var(--clr-offblack);
-
-    border-radius: 1.6rem 0;
-
-    box-shadow: 
-        var(--clr-offwhite) .4rem .4rem,
-        var(--clr-offblack) .4rem .8rem 1.2rem;
+    height: 0.75rem;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.225rem;
+    top: calc(3rem + 2px);
+    left: 0;
+    transform: translateY(-1rem);
+    color: white;
+    background-color: black;
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    animation: slide-in 300ms;
 }
 
-header::after {
-    content: '';
-
-    height: 100vh;
-    width: 80vw;
-
-    position:absolute;
-    z-index: -2;
-
-    top: -.4rem;
-
-    background-color: var(--clr-offwhite);
-
-    border-right: .2rem solid var(--clr-offblack);
-    border-left: .2rem solid var(--clr-offblack);
-
-    box-shadow: 
-        var(--clr-offwhite) 0 0 0 .4rem,
-        var(--clr-offblack) 0 0 1.2rem .4rem;
-}
-
-header > h1 {
-    color: var(--clr-accent);
-    font-size: 3rem;
-
+@keyframes slide-in {
+    0% {left: -10rem;}
+    100% {left: 0;}
 }
