@@ -51,7 +51,7 @@ html {
 
     background-color: orange;
 
-    animation: fall 2500ms ease-in;
+    animation: fall 1500ms ease-in;
 }
 
 @keyframes fall {
@@ -153,21 +153,6 @@ nav > ul > li > a {
     text-align: center;
     text-decoration: none;
     color: var(--clr-white);
-}
-
-@media screen and (max-width: 22.2rem) {
-    nav {
-        height: 3rem;
-    }
-    nav > ul {
-        height: calc(2*100% / 3);
-    }
-    nav > ul > li {
-        height:150%;
-    }
-    .info-gh::after {
-        opacity: 0;
-    }
 }
 
 .info-gh:hover::after {
