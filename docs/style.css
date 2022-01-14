@@ -1,9 +1,31 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "dripicons";
+    src: url("./dripicons-v2.woff");
+}
+
 :root {
     font-size: 20px;
-    --clr-accent: rgb(128, 128, 128);
+
+    --clr-accent: rgb(125, 60, 140);
     --clr-white: rgb(255, 255, 255);
     --clr-black: rgb(27, 14, 30);
     --sys-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.mailto::after {
+    content: " \e015";
+
+    font-size: 0.75rem;
+    font-family: "dripicons";
+}
+
+.link-external::after {
+    content:' [';
+
+    font-size: 0.75rem;
+    font-family: "dripicons";
 }
 
 * {
@@ -19,18 +41,68 @@ html {
     background-color: var(--clr-white);
 }
 
+#construction {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: orange;
+
+    animation: fall 2500ms ease-in;
+}
+
+@keyframes fall {
+    0% {top: -500vh;}
+    100% {top: 0;}
+}
+
 header {
-    margin-top: .3rem;
+    font-size: 0;
+    padding-top: calc(1rem / 3);
+
     color: var(--clr-black);
 }
 
-header > h1 {
-    margin-left: 0.5rem;
+header > span {
+    width: 50%;
+    display: inline-block;
 }
 
-header > p {
-    margin-left: 0.5rem;
+header > span > h1 {
+    font-size: 2rem;
     color: var(--clr-black);
+}
+
+header > span > p {
+    font-size: 1rem;
+    color: var(--clr-black);
+}
+
+header > span > a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--clr-accent);
+}
+
+header > span > a:hover {
+    color: var(--clr-black);
+}
+
+header > span > a ~ a {
+    margin-top: calc(1rem / 3);
+}
+
+span.lft * {
+    margin-left: 0.5rem;
+}
+span.rt * {
+    display: block;
+    width: calc(100% - 0.5rem);
+    margin-right: 0.5rem;
+    text-align: right;
 }
 
 nav {
@@ -129,6 +201,25 @@ section {
     margin-top: calc(0.5rem + 2px);
 }
 
-section > h3 {
+section * {
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+section > h3 {
+    width: calc(50% - 0.5rem);
+    font-size: 1.25rem;
+}
+
+section > p {
+    margin-top: calc(1rem / 3);
+    width: calc(50% - 1rem);
+
+    font-size: 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+section > span {
+    display: inline-block;
 }
