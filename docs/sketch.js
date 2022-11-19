@@ -6,7 +6,7 @@ function setup() {
 
 function draw() {
     background(0);
-    if (particles.length < 2048) {
+    if (particles.length < 512) {
         let x = width * Math.random();
         let y = height * Math.random() - height;
         let r = 3 * (y + height) / height + 3;
