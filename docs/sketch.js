@@ -5,7 +5,7 @@ let colors = [];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    numParticles = ~~(windowWidth * windowHeight / 1000);
+    numParticles = ~~(windowWidth * windowHeight / 500);
     console.log(numParticles);
 
     colors.push(color(255, 173, 173));
