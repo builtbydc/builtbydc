@@ -1,10 +1,22 @@
 let particles = [];
 let numParticles;
 
+let colors = [];
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     numParticles = ~~(windowWidth * windowHeight / 1000);
     console.log(numParticles);
+
+    colors.push(color(255, 173, 173));
+    colors.push(color(255, 214, 165));
+    colors.push(color(253, 255, 182));
+    colors.push(color(202, 255, 191));
+    colors.push(color(155, 246, 255));
+    colors.push(color(160, 196, 255));
+    colors.push(color(189, 178, 255));
+    colors.push(color(255, 198, 255));
+    colors.push(color(255, 255, 252));
 }
 
 function draw() {
@@ -13,7 +25,8 @@ function draw() {
         let x = width * Math.random();
         let y = height * Math.random() - height;
         let r = 3 * (y + height) / height + 3;
-        particles.push(new Particle(x, y, r));
+        let c = colors[~~(9*Math.random())];
+        particles.push(new Particle(x, y, r, c));
     }
     for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
@@ -21,17 +34,20 @@ function draw() {
             let x = width * Math.random();
             let y = height * Math.random() - height;
             let r = 3 * (y + height) / height + 3;
-            particles[i] = new Particle(x, y, r);
+            let c = colors[~~(9*Math.random())];
+            particles[i] = new Particle(x, y, r, c);
         }
         p.display();
     }
 }
 
 class Particle {
-    constructor(x, y, r) {
+    constructor(x, y, r, c) {
         this.x = x;
         this.y = y;
         this.r = r;
+
+        this.c = c;
 
         this.dx = 0;
         this.dy = 0;
@@ -62,7 +78,7 @@ class Particle {
     display() {
         this.update();
         noStroke();
-        fill(255, 200, 200);
+        fill(this.c);
         ellipse(this.x, this.y, this.r, this.r);
     }
 }
