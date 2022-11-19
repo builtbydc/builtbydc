@@ -1,12 +1,15 @@
 let particles = [];
+let numParticles;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    numParticles = ~~(windowWidth * windowHeight / 1000);
+    console.log(numParticles);
 }
 
 function draw() {
     background(0);
-    if (particles.length < 512) {
+    if (particles.length < numParticles) {
         let x = width * Math.random();
         let y = height * Math.random() - height;
         let r = 3 * (y + height) / height + 3;
