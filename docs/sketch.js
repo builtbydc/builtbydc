@@ -3,6 +3,11 @@ let particleNumber = 500;
 
 let colors = [];
 
+let aharoni;
+function preload() {
+    aharoni = loadFont("./ahronbd.ttf");
+}
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
@@ -20,9 +25,9 @@ function setup() {
 
     background(0);
     
-
     
-}
+    
+} window.onresize = setup;
 
 let x = 0;
 let y = 0;
@@ -35,8 +40,20 @@ function draw() {
         px = x * windowHeight / 15;
         py = -y * windowHeight / 12;
 
-        if(py <= 0 && -py < windowHeight) {
-            fill(colors[~~(-9*py / windowHeight)]);
+        if(py <= 0 && -py < windowHeight && px >= -windowWidth / 2 && px < windowWidth / 2) {
+            let pxp = (px + windowWidth / 2) / windowWidth;
+            let pyp = -py / windowHeight;
+            let colorp = 36 * (Math.pow(pxp - 0.5, 2) + Math.pow(pyp - 0.5, 2));
+            colorp = Math.max(0, colorp);
+            colorp = Math.min(8, colorp);
+            if(colorp > 0 && colorp % 1 < 0.5) {
+                if(Math.random() < 0.5) {
+                    colorp -= 0.2;
+                }
+            }
+            let colorIndex = ~~(colorp);
+            //console.log(colorIndex);
+            fill(colors[colorIndex]);
             ellipse(px, py, 1, 1);
         }
 
@@ -64,5 +81,20 @@ function draw() {
         x = nextX;
         y = nextY;
     }
+    
+    push();
+    translate(windowWidth/2, windowHeight/2);
+    textAlign(CENTER, CENTER);
+
+    textSize(64);
+    fill(0);
+    textFont(aharoni);
+    if(windowWidth > windowHeight)
+        text("Daniel Carlson", 0, 0);
+    else {
+        text("Daniel", 0, -32);
+        text("Carlson", 0, 32);
+    }
+    pop();
 }
 
