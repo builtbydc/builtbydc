@@ -143,8 +143,8 @@ function draw() {
         ddx += pnrand(0.01);
         ddy += pnrand(0.01);
 
-        let dk = 0.8;
-        let ddk = -0.2;
+        let dk = 0.83;
+        let ddk = -0.5;
         if(Math.sqrt(dx*dx + dy*dy) > 0.3) {
             dx *= dk;
             dy *= dk;
