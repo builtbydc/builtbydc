@@ -132,10 +132,10 @@ function draw() {
         miny = Math.min(miny, y);
         maxy = Math.max(maxy, y);
 
-        if(x < 0) x = windowWidth;
-        if(y < 0) y = windowHeight;
-        if(x > windowWidth) x = 0;
-        if(y > windowHeight) y = 0;
+        if(x < 0) flipX(0);
+        if(y < 0) flipY(0);
+        if(x > windowWidth) flipX(windowWidth-1);
+        if(y > windowHeight) flipY(windowHeight-1);
 
         dx += ddx;
         dy += ddy;
@@ -152,6 +152,18 @@ function draw() {
             ddy *= ddk;
         }
     }
+}
+
+function flipX(pos) {
+    x = pos;
+    dx *= -1;
+    ddx *= -1;
+}
+
+function flipY(pos) {
+    y = pos;
+    dy *= -1;
+    ddy *= -1;
 }
 
 function pnrand(magnitude) {
