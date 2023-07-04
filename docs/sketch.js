@@ -3,9 +3,13 @@ let x, y, lastx, lasty;
 let dx, dy;
 let ddx, ddy;
 
+let minx,maxx,miny,maxy;
+
 let speed;
 
 let time;
+
+let PIXEL_DENSITY;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -13,7 +17,9 @@ function setup() {
     background(0);
 
     noStroke();
-    colorMode(HSB);
+
+
+    PIXEL_DENSITY = pixelDensity();
 
     r = 1;
 
@@ -28,15 +34,91 @@ function setup() {
     ddx = 0;
     ddy = 0;
 
-    speed = 50;
+    speed = 30;
 
     time = 0;
 }
 
+function getPixel(px, py) {
+    let d = PIXEL_DENSITY;
+    let index = 4 * d * (py * width * d + px);
+    return color(
+        pixels[index],
+        pixels[index+1],
+        pixels[index+2]
+    );
+}
+
+function setPixel(px, py, color) {
+    let r = color.levels[0];
+    let g = color.levels[1];
+    let b = color.levels[2];
+    let d = PIXEL_DENSITY;
+    for (let i = 0; i < d; i++) {
+        for (let j = 0; j < d; j++) {
+            // loop over
+            index = 4 * ((py * d + j) * windowWidth * d + (px * d + i));
+            pixels[index] = r;
+            pixels[index+1] = g;
+            pixels[index+2] = b;
+        }
+    }
+}
+
+function avgColor(px, py) {
+    let colors = [];
+    if(px > 0) {
+        colors.push(getPixel(px-1, py));
+        if(py > 0) colors.push(getPixel(px-1, py-1));
+        if(py < windowHeight-1) colors.push(getPixel(px-1, py+1));
+    }
+    if(py > 0) colors.push(getPixel(px, py-1));
+    if(py < windowHeight-1) colors.push(getPixel(px, py+1));
+    if(px < windowWidth-1) {
+        colors.push(getPixel(px+1, py));
+        if(py > 0) colors.push(getPixel(px+1, py-1));
+        if(py < windowHeight-1) colors.push(getPixel(px+1, py+1));
+    }
+
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    for(let i = 0; i < colors.length; i++) {
+        r += colors[i].levels[0];
+        g += colors[i].levels[1];
+        b += colors[i].levels[2];
+    }
+
+    r /= colors.length;
+    g /= colors.length;
+    b /= colors.length;
+
+    return color(r, g, b);
+}
+
 function draw() {
+    colorMode(HSB);
     fill(time, 50, 100);
+    colorMode(RGB);
     time++;
     time %= 360;
+    if(time % 2 === 0) {
+        let bb = Math.max(x - minx, maxx - x, y - miny, maxy - y) + 7;
+        loadPixels();
+        let px, py;
+        for(px = Math.max(Math.round(x - bb), 0); px < Math.min(x + bb, windowWidth); px++) {
+            for(py = Math.max(Math.round(y - bb), 0); py < Math.min(y + bb, windowHeight); py++) {
+                setPixel(px, py, avgColor(px, py));
+            }
+        }
+        console.log([px, py, x, y])
+        updatePixels();
+
+        minx = x;
+        maxx = x;
+        miny = y;
+        maxy = y;
+    }
     for(let i = 0; i < speed; i++) {
         ellipse(x, y, 2*r, 2*r);
 
@@ -44,6 +126,11 @@ function draw() {
         lasty = y;
         x += dx;
         y += dy;
+
+        minx = Math.min(minx, x);
+        maxx = Math.max(maxx, x);
+        miny = Math.min(miny, y);
+        maxy = Math.max(maxy, y);
 
         if(x < 0) x = windowWidth;
         if(y < 0) y = windowHeight;
@@ -56,11 +143,13 @@ function draw() {
         ddx += pnrand(0.01);
         ddy += pnrand(0.01);
 
-        if(Math.sqrt(dx*dx + dy*dy) > 0.1) {
-            dx *= 0.999;
-            dy *= 0.999;
-            ddx *= -0.99;
-            ddy *= -0.99;
+        let dk = 0.8;
+        let ddk = -0.2;
+        if(Math.sqrt(dx*dx + dy*dy) > 0.3) {
+            dx *= dk;
+            dy *= dk;
+            ddx *= ddk;
+            ddy *= ddk;
         }
     }
 }
