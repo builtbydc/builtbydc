@@ -4,6 +4,7 @@ let dx, dy;
 let ddx, ddy;
 
 let minx,maxx,miny,maxy;
+let minxm,maxxm, minym, maxym;
 
 let speed;
 
@@ -93,7 +94,7 @@ function avgColor(px, py) {
     g /= colors.length;
     b /= colors.length;
 
-    return color(r, g, b);
+    return color(r, 0.99*g, b);
 }
 
 function draw() {
@@ -105,13 +106,16 @@ function draw() {
     if(time % 2 === 0) {
         let bb = Math.max(x - minx, maxx - x, y - miny, maxy - y) + 7;
         loadPixels();
-        let px, py;
-        for(px = Math.max(Math.round(x - bb), 0); px < Math.min(x + bb, windowWidth); px++) {
-            for(py = Math.max(Math.round(y - bb), 0); py < Math.min(y + bb, windowHeight); py++) {
+        for(let px = Math.max(Math.round(x - bb), 0); px < Math.min(x + bb, windowWidth); px++) {
+            for(let py = Math.max(Math.round(y - bb), 0); py < Math.min(y + bb, windowHeight); py++) {
                 setPixel(px, py, avgColor(px, py));
             }
         }
-        console.log([px, py, x, y])
+        for(let px = Math.max(Math.round((windowWidth - x) - bb), 0); px < Math.min((windowWidth - x) + bb, windowWidth); px++) {
+            for(let py = Math.max(Math.round((windowHeight - y) - bb), 0); py < Math.min((windowHeight - y) + bb, windowHeight); py++) {
+                setPixel(px, py, avgColor(px, py));
+            }
+        }
         updatePixels();
 
         minx = x;
@@ -121,6 +125,7 @@ function draw() {
     }
     for(let i = 0; i < speed; i++) {
         ellipse(x, y, 2*r, 2*r);
+        ellipse(windowWidth - x, windowHeight - y, 2*r, 2*r);
 
         lastx = x;
         lasty = y;
@@ -131,6 +136,11 @@ function draw() {
         maxx = Math.max(maxx, x);
         miny = Math.min(miny, y);
         maxy = Math.max(maxy, y);
+
+        minxm = Math.min(minxm, windowWidth - x);
+        maxxm = Math.max(maxxm, windowWidth - x);
+        minym = Math.min(minym, windowHeight - y);
+        maxym = Math.max(maxym, windowHeight - y);
 
         if(x < 0) flipX(0);
         if(y < 0) flipY(0);
