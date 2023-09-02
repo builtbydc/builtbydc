@@ -1,181 +1,103 @@
-let r;
-let x, y, lastx, lasty;
-let dx, dy;
-let ddx, ddy;
+let particles;
+let number = 100;
 
-let minx,maxx,miny,maxy;
-let minxm,maxxm, minym, maxym;
-
-let speed;
-
-let time;
-
-let PIXEL_DENSITY;
+let pointx;
+let pointy;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    background(35, 35, 35);
 
-    background(0);
+    particles = [];
 
-    noStroke();
-
-
-    PIXEL_DENSITY = pixelDensity();
-
-    r = 1;
-
-    x = windowWidth / 2;
-    y = windowHeight / 2;
-    lastx = x;
-    lasty = y;
-
-    dx = 0;
-    dy = 0;
-
-    ddx = 0;
-    ddy = 0;
-
-    speed = 30;
-
-    time = 0;
-}
-
-function getPixel(px, py) {
-    let d = PIXEL_DENSITY;
-    let index = 4 * d * (py * width * d + px);
-    return color(
-        pixels[index],
-        pixels[index+1],
-        pixels[index+2]
-    );
-}
-
-function setPixel(px, py, color) {
-    let r = color.levels[0];
-    let g = color.levels[1];
-    let b = color.levels[2];
-    let d = PIXEL_DENSITY;
-    for (let i = 0; i < d; i++) {
-        for (let j = 0; j < d; j++) {
-            // loop over
-            index = 4 * ((py * d + j) * windowWidth * d + (px * d + i));
-            pixels[index] = r;
-            pixels[index+1] = g;
-            pixels[index+2] = b;
-        }
-    }
-}
-
-function avgColor(px, py) {
-    let colors = [];
-    if(px > 0) {
-        colors.push(getPixel(px-1, py));
-        if(py > 0) colors.push(getPixel(px-1, py-1));
-        if(py < windowHeight-1) colors.push(getPixel(px-1, py+1));
-    }
-    if(py > 0) colors.push(getPixel(px, py-1));
-    if(py < windowHeight-1) colors.push(getPixel(px, py+1));
-    if(px < windowWidth-1) {
-        colors.push(getPixel(px+1, py));
-        if(py > 0) colors.push(getPixel(px+1, py-1));
-        if(py < windowHeight-1) colors.push(getPixel(px+1, py+1));
+    for(let i = 0; i < number; i++) {
+        particles.push(new Particle());
     }
 
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    for(let i = 0; i < colors.length; i++) {
-        r += colors[i].levels[0];
-        g += colors[i].levels[1];
-        b += colors[i].levels[2];
-    }
-
-    r /= colors.length;
-    g /= colors.length;
-    b /= colors.length;
-
-    return color(r, 0.99*g, b);
+    pointx = windowWidth / 2;
+    pointy = windowHeight / 2;
 }
+
+let t = 0;
 
 function draw() {
-    colorMode(HSB);
-    fill(time, 50, 100);
-    colorMode(RGB);
-    time++;
-    time %= 360;
-    if(time % 2 === 0) {
-        let bb = Math.max(x - minx, maxx - x, y - miny, maxy - y) + 7;
-        loadPixels();
-        for(let px = Math.max(Math.round(x - bb), 0); px < Math.min(x + bb, windowWidth); px++) {
-            for(let py = Math.max(Math.round(y - bb), 0); py < Math.min(y + bb, windowHeight); py++) {
-                setPixel(px, py, avgColor(px, py));
-            }
-        }
-        for(let px = Math.max(Math.round((windowWidth - x) - bb), 0); px < Math.min((windowWidth - x) + bb, windowWidth); px++) {
-            for(let py = Math.max(Math.round((windowHeight - y) - bb), 0); py < Math.min((windowHeight - y) + bb, windowHeight); py++) {
-                setPixel(px, py, avgColor(px, py));
-            }
-        }
-        updatePixels();
+    fill(0, 0, 0, 23);
+    rect(0, 0, windowWidth, windowHeight);
 
-        minx = x;
-        maxx = x;
-        miny = y;
-        maxy = y;
-    }
-    for(let i = 0; i < speed; i++) {
-        ellipse(x, y, 2*r, 2*r);
-        ellipse(windowWidth - x, windowHeight - y, 2*r, 2*r);
+    fill(255);
+    ellipse(windowWidth/2, windowHeight/2, 100 + 20*Math.sin(t/30), 100 + 20*Math.sin(t/30));
+    t++;
 
-        lastx = x;
-        lasty = y;
-        x += dx;
-        y += dy;
-
-        minx = Math.min(minx, x);
-        maxx = Math.max(maxx, x);
-        miny = Math.min(miny, y);
-        maxy = Math.max(maxy, y);
-
-        minxm = Math.min(minxm, windowWidth - x);
-        maxxm = Math.max(maxxm, windowWidth - x);
-        minym = Math.min(minym, windowHeight - y);
-        maxym = Math.max(maxym, windowHeight - y);
-
-        if(x < 0) flipX(0);
-        if(y < 0) flipY(0);
-        if(x > windowWidth) flipX(windowWidth-1);
-        if(y > windowHeight) flipY(windowHeight-1);
-
-        dx += ddx;
-        dy += ddy;
-
-        ddx += pnrand(0.01);
-        ddy += pnrand(0.01);
-
-        let dk = 0.83;
-        let ddk = -0.5;
-        if(Math.sqrt(dx*dx + dy*dy) > 0.3) {
-            dx *= dk;
-            dy *= dk;
-            ddx *= ddk;
-            ddy *= ddk;
-        }
+    for(let i = 0; i < number; i++) {
+        particles[i].display();
     }
 }
 
-function flipX(pos) {
-    x = pos;
-    dx *= -1;
-    ddx *= -1;
+function randomX(radius) {
+    let rx = (windowWidth / 2 - radius - 100) * Math.random() + radius;
+    //if(Math.random() > 0.5) rx += windowWidth / 2 + 100;
+    return rx;
 }
 
-function flipY(pos) {
-    y = pos;
-    dy *= -1;
-    ddy *= -1;
+function randomY(radius) {
+    let ry = (windowHeight / 2 - radius - 100) * Math.random() + radius;
+    if(Math.random() > 0.5) ry += windowHeight / 2 + 100;
+    return ry;
 }
 
-function pnrand(magnitude) {
-    return 2 * magnitude * Math.random() - magnitude;
+class Particle {
+
+    constructor() {
+        let speed = 25;
+        this.acceleration = speed * speed;
+        let minSize = 2;
+        let maxSize = 2;
+
+        this.r = (maxSize - minSize)*Math.random() + minSize;
+        this.x = randomX(this.r);
+        this.y = windowHeight / 2;
+        this.lastX = this.x;
+        this.lastY = this.y;
+
+        let phi = Math.atan2(windowHeight / 2 - this.y, windowWidth / 2 - this.x) + Math.PI / 2;
+        //if(Math.random() > 0.5) phi -= Math.PI;
+
+        let tdx = windowWidth / 2 - this.x;
+        let tdy = windowHeight / 2 - this.y;
+        let td = Math.sqrt(tdx*tdx + tdy*tdy);
+        let tspeed = speed*Math.sqrt(1 / td);
+
+        this.dx = tspeed*Math.cos(phi);
+        this.dy = tspeed*Math.sin(phi);
+    }
+
+    display() {
+        fill(255);
+        stroke(255);
+        strokeWeight(this.r);
+        line(this.lastX, this.lastY, this.x, this.y);
+
+        noStroke();
+        //ellipse(this.x, this.y, 2*this.r, 2*this.r);
+        this.update();
+    }
+
+    update() {
+        let theta = Math.atan2(windowHeight / 2 - this.y, windowWidth / 2 - this.x);
+        let tdx = windowWidth / 2 - this.x;
+        let tdy = windowHeight / 2 - this.y;
+        let td = Math.sqrt(tdx*tdx + tdy*tdy);
+        let taccel = this.acceleration / (td * td);
+        let ddx = taccel*Math.cos(theta);
+        let ddy = taccel*Math.sin(theta);
+
+        this.dx += ddx;
+        this.dy += ddy;
+
+        this.lastX = this.x;
+        this.lastY = this.y;
+
+        this.x += this.dx;
+        this.y += this.dy;
+    }
 }
