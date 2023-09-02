@@ -1,5 +1,5 @@
 let particles;
-let number = 100;
+let number = 10000;
 
 let pointx;
 let pointy;

@@ -1,0 +1,146 @@
+:root {
+    --page-width: 47rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    overflow-x: hidden;
+
+    background-color:lemonchiffon;
+}
+
+.stuck {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+
+}
+
+header {
+    width: min(100vw, var(--page-width));
+    padding-left: min(6rem, 8vw);
+    padding-right: min(6rem, 8vw);
+    background-color: white;
+
+    border-bottom: 0.125rem solid black;
+
+    box-shadow: 0 0 2rem -1rem black;
+
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+
+    padding: 0.5rem;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: center;
+}
+
+nav > ul > li {
+    padding: 0.5rem;
+    display: inline-flex;
+    list-style-type: none;
+}
+
+li > a {
+    color: black;
+}
+
+.free {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    
+}
+
+#resume {
+    background-color: white;
+
+    width: min(100vw, var(--page-width));
+    padding-top: 6.125rem;
+    padding-bottom: 6rem;
+    padding-left: min(6rem, 8vw);
+    padding-right: min(6rem, 8vw);
+
+    box-shadow: 0 0 2rem -1rem black;
+}
+
+h2 {
+    padding-top: 0.75rem;
+    font-size: 1.15rem;
+}
+
+#resume > ul {
+    padding-left: min(3rem, 6vw);
+    padding-bottom: 0.25rem;
+}
+
+#resume > ul > li {
+    padding: 0.25rem;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    font-size: 1rem;
+    display: inline-flex;
+    padding-top: 0.25rem;
+}
+
+span {
+    display: inline-flex;
+}
+
+.top {
+    padding-top: 0.25rem;
+}
+
+.bottom {
+    padding-bottom: 0.25rem;
+}
+
+.right {
+    text-align: right;
+}
+
+p {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+}
+
+li, p {
+    text-align: justify;
+}
+
+td {
+    vertical-align: top;
+}
+
+.tname {
+    width: 10rem;
+}
+
+td {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+table {
+    padding-bottom: 0.25rem;
+}
