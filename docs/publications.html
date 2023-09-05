@@ -2,23 +2,37 @@
 <html>
     <head>
         <title>Daniel Carlson's Publications</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style-publications.css">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
 
     <body>
-        <div class="stuck">
-            <header>
-                <h1>DANIEL CARLSON</h1>
-                <nav>
-                    <ul>
-                        <li><a href="./index.html">Résumé</a></li>
-                        <li><a href="./publications.html" class="active">Publications</a></li>
-                        <li><a href="./projects.html">Projects</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-            </header>
+        <header>
+            <h1>DANIEL CARLSON</h1>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Résumé</a></li>
+                    <li><a href="./publications.html" class="active">Publications</a></li>
+                    <li><a href="./projects.html">Projects</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <section>
+                <div>
+                    <h2>Allocation Policies Matter for Hybrid Memory Systems</h2>
+                    <p class="citation">Adnan Maruf, Daniel Carlson, Ashikee Ghosh, Manoj Saha, Janki Bhimani, and Raju Rangaswami. 2023. Allocation Policies Matter for Hybrid Memory Systems. In&nbsp;<em>Proceedings of the 32nd International Symposium on High-Performance Parallel and Distributed Computing (HPDC '23), June 16-23, 2023, Orlando, FL, USA.</em>&nbsp;ACM, New York, NY, USA, 2 pages. https:<wbr>//<wbr>doi.org<wbr>/10<wbr>.1145<wbr>/3588195<wbr>.3595946</p>
+                    <h3>ABSTRACT</h3>
+                    <p>
+                        Existing tiered memory systems all use DRAM-Preferred as their allocation policy, whereby pages get allocated from higher-performing DRAM until it is filled, after which all future allocations are made from lower-performing persistent memory (PM). The novel insight of this work is that the right page allocation policy for a workload can help to lower the access latencies for the newly allocated pages. We design, implement, and evaluate three page allocation policies within the real system deployment of the state-of-the-art dynamic tiering system. We observe that the right page allocation policy can improve the performance of a tiered memory system by as much as 17x for certain workloads.
+                    </p>
+                    <a href="https://dl.acm.org/doi/pdf/10.1145/3588195.3595946#:~:text=Allocation%20policies%20can%20impact%20the,the%20best%20for%20all%20workloads.">
+                        <p><i>Link to PDF.</i></p>
+                    </a>
+                </div>
+            </section>
         </div>
     </body>
 </html>
